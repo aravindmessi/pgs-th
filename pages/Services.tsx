@@ -1,9 +1,25 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedPage from '../components/AnimatedPage';
 import { services } from '../constants';
 import { motion, Variants } from 'framer-motion';
+
+import webdev from '../assets/webdev.png'
+import appdev from '../assets/appdev.png'
+import video from '../assets/video.png'
+import erp from '../assets/erp.png'
+import crm from '../assets/crm.png'
+import ai from '../assets/ai.png'
+
+// ✅ Correct image mapping based on service.id
+const serviceImagesMap: { [key: string]: string } = {
+    "web-development": webdev,
+    "app-development": appdev,
+    "video-shooting-ads": video,
+    "erp-solutions": erp,
+    "crm": crm,
+    "ai-integrations": ai
+};
 
 const Services: React.FC = () => {
     const containerVariants = {
@@ -54,7 +70,7 @@ const Services: React.FC = () => {
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
+                        animate="visible"
                         viewport={{ once: true, amount: 0.2 }}
                     >
                         {services.map((service, index) => (
@@ -66,16 +82,27 @@ const Services: React.FC = () => {
                                     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
                                 }}
                             >
-                                <Link to={`/services/${service.id}`} className="block h-full">
-                                    <div className="h-full bg-gray-900/50 p-8 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-purple-500/80 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/20 group">
-                                        <div className="text-purple-400 mb-4 transition-colors group-hover:text-purple-300">
-                                            <service.icon className="h-12 w-12" />
+                                <Link to={`/services/${service.id}`} className="block h-full group">
+                                    <div className="relative h-full overflow-hidden bg-gray-900/50 p-8 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-purple-500/80 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/20">
+                                        
+                                        {/* ✅ Replaced random picsum with your imported images */}
+                                        <img 
+                                            src={serviceImagesMap[service.id]}
+                                            alt={`${service.name} background`}
+                                            className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-50 filter blur-sm group-hover:blur-none transition-all duration-500"
+                                            loading="lazy"
+                                        />
+
+                                        <div className="relative z-10">
+                                            <div className="text-purple-400 mb-4 transition-colors group-hover:text-purple-300">
+                                                <service.icon className="h-12 w-12" />
+                                            </div>
+                                            <h3 className="text-2xl font-bold mb-2 text-white">{service.name}</h3>
+                                            <p className="text-gray-400 mb-4">{service.description}</p>
+                                            <span className="font-semibold text-purple-400 transition-all group-hover:text-white group-hover:pl-2">
+                                                Learn More &rarr;
+                                            </span>
                                         </div>
-                                        <h3 className="text-2xl font-bold mb-2 text-white">{service.name}</h3>
-                                        <p className="text-gray-400 mb-4">{service.description}</p>
-                                        <span className="font-semibold text-purple-400 transition-all group-hover:text-white group-hover:pl-2">
-                                            Learn More &rarr;
-                                        </span>
                                     </div>
                                 </Link>
                             </motion.div>

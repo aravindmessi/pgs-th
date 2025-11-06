@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
@@ -52,13 +51,13 @@ const ServicesDropdown: React.FC = () => (
 
 const DesktopNav: React.FC = () => {
   const [isServicesOpen, setServicesOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="hidden lg:flex items-center justify-between w-full">
-     <Link to="/">
-  <img src={logo} alt="PGS logo" className="h-11 w-auto" />
-
-</Link>
+      <Link to="/">
+      <img src={logo} alt="PGS logo" className="w-20 h-auto" />
+      </Link>
 
       <div className="flex items-center space-x-6">
         {navLinks.map((link) =>
@@ -69,7 +68,19 @@ const DesktopNav: React.FC = () => {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <NavItem to={link.path}>{link.name}</NavItem>
+              <div
+                className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 cursor-pointer ${
+                  location.pathname.startsWith('/services') ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {link.name}
+                {location.pathname.startsWith('/services') && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500"
+                    layoutId="underline"
+                  />
+                )}
+              </div>
               <AnimatePresence>{isServicesOpen && <ServicesDropdown />}</AnimatePresence>
             </div>
           ) : (

@@ -1,14 +1,47 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-// FIX: Import Variants, useScroll, and useTransform types to explicitly type animation variants and hooks.
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, useScroll, useAnimation, useMotionValueEvent } from 'framer-motion';
 import AnimatedPage from '../components/AnimatedPage';
 import { services } from '../constants';
-import { FastDeliveryIcon, FlexiblePricingIcon, StrongCommunicationIcon, ScalableSolutionsIcon, SupportIcon, WebDevIcon, AppDevIcon, VideoIcon } from '../components/Icons';
+import { FastDeliveryIcon, FlexiblePricingIcon, StrongCommunicationIcon, ScalableSolutionsIcon, SupportIcon } from '../components/Icons';
+
+import webdev from '../assets/webdev.png'
+import appdev from '../assets/appdev.png'
+import video from '../assets/video.png'
+
+const serviceImagesMap: { [key: string]: string } = {
+    "web-development": webdev,
+    "app-development": appdev,
+    "video-shooting-ads": video
+};
+
+const serviceImageSeeds: { [key: string]: string } = {
+    'web-development': 'web-design-code',
+    'app-development': 'mobile-app-ui',
+    'video-shooting-ads': 'camera-filmmaking',
+    'erp-solutions': 'business-dashboard-charts',
+    'crm': 'customer-relations-team',
+    'ai-integrations': 'artificial-intelligence-circuit'
+};
 
 const Home: React.FC = () => {
-    // FIX: Explicitly type animation variants as Variants.
+    const { scrollY } = useScroll();
+    const headingControls = useAnimation();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() || 0;
+        if (latest > previous && latest > 100) { 
+            headingControls.start("hidden");
+        } else { 
+            headingControls.start("visible");
+        }
+    });
+
+    const headingScrollVariants: Variants = {
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+        hidden: { opacity: 0, y: -40, transition: { duration: 0.3, ease: "easeInOut" } },
+    };
+
     const containerVariants: Variants = {
         hidden: {},
         visible: {
@@ -18,34 +51,27 @@ const Home: React.FC = () => {
         },
     };
 
-    // FIX: Explicitly type animation variants as Variants to fix type incompatibility error.
     const itemVariants: Variants = {
-        hidden: (i: number) => ({
+        hidden: {
             opacity: 0,
-            x: i % 2 === 0 ? -50 : 50,
             y: 30,
-            rotate: i % 2 === 0 ? -10 : 10,
-        }),
+        },
         visible: {
             opacity: 1,
-            x: 0,
             y: 0,
-            rotate: 0,
             transition: {
                 type: 'spring',
-                damping: 12,
+                damping: 15,
                 stiffness: 100,
             },
         },
     };
     
-    // FIX: Explicitly type animation variants as Variants.
     const descriptionVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8 } },
     };
     
-    // FIX: Explicitly type animation variants as Variants.
     const buttonVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } },
@@ -88,32 +114,35 @@ const Home: React.FC = () => {
                         initial="hidden" 
                         animate="visible"
                     >
-                        <motion.h1
-                            variants={containerVariants}
-                            className="font-extrabold text-white leading-none mb-6 flex flex-col items-center"
+                        <motion.div
+                            variants={headingScrollVariants}
+                            animate={headingControls}
+                            initial="visible"
                         >
-                            <motion.span 
-                                custom={0}
-                                variants={itemVariants} 
-                                className="block text-4xl md:text-7xl"
+                            <motion.h1
+                                variants={containerVariants}
+                                className="font-extrabold text-white leading-none mb-6 flex flex-col items-center"
                             >
-                                OnestopSolutionsFor
-                            </motion.span>
-                            <motion.span 
-                                custom={1}
-                                variants={itemVariants} 
-                                className="block text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 my-1 md:my-2"
-                            >
-                                Business
-                            </motion.span>
-                            <motion.span 
-                                custom={2}
-                                variants={itemVariants} 
-                                className="block text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500"
-                            >
-                                Development
-                            </motion.span>
-                        </motion.h1>
+                                <motion.span 
+                                    variants={itemVariants} 
+                                    className="block text-4xl md:text-7xl"
+                                >
+                                    OnestopSolutionsFor
+                                </motion.span>
+                                <motion.span 
+                                    variants={itemVariants} 
+                                    className="block text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 my-1 md:my-2"
+                                >
+                                    Business
+                                </motion.span>
+                                <motion.span 
+                                    variants={itemVariants} 
+                                    className="block text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500"
+                                >
+                                    Development
+                                </motion.span>
+                            </motion.h1>
+                        </motion.div>
 
                         <motion.p
                             variants={descriptionVariants}
@@ -124,13 +153,13 @@ const Home: React.FC = () => {
                         <motion.div variants={buttonVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
                                 to="/contact"
-                                className="w-full sm:w-auto inline-block text-center rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 p-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500"
+                                className="w-full sm:w-auto inline-block text-center rounded-full shadow-[0_0_25px_rgba(236,72,153,0.6)] hover:shadow-[0_0_40px_rgba(236,72,153,0.8)] hover:scale-105 transform transition-all duration-300 p-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"
                                 style={{
-                                    backgroundSize: '200% auto',
-                                    animation: 'animated-gradient-border-flow 4s linear infinite',
+                                    backgroundSize: '400% auto',
+                                    animation: 'animated-gradient-border-flow 2s linear infinite',
                                 }}
                             >
-                                <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">
+                                <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold hover:bg-transparent transition-colors duration-300">
                                     Start Your Project
                                 </span>
                             </Link>
@@ -145,6 +174,7 @@ const Home: React.FC = () => {
                 </div>
             </div>
 
+            {/* ✅ OUR CORE SERVICES FIXED HERE */}
             <motion.section 
                 className="py-20"
                 variants={sectionVariants}
@@ -164,18 +194,30 @@ const Home: React.FC = () => {
                         {services.slice(0, 3).map((service, index) => (
                             <motion.div
                                 key={service.id}
-                                custom={index}
                                 variants={{
                                     hidden: { opacity: 0, y: 20 },
                                     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                                 }}
-                                className="bg-gray-900/50 p-8 rounded-lg border border-gray-800 backdrop-blur-sm hover:border-purple-500 transition-all duration-300 transform hover:-translate-y-2"
                             >
-                                <div className="text-purple-400 mb-4">
-                                    <service.icon className="h-10 w-10" />
-                                </div>
-                                <h3 className="text-xl font-bold mb-2">{service.name}</h3>
-                                <p className="text-gray-400">{service.description}</p>
+                                <Link to={`/services/${service.id}`} className="block h-full group">
+                                    <div className="relative h-full overflow-hidden bg-gray-900/50 p-8 rounded-lg border border-gray-800 backdrop-blur-sm group-hover:border-purple-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                                        
+                                        {/* ✅ Correct local image mapping */}
+                                        <img 
+                                            src={serviceImagesMap[service.id]}
+                                            alt={service.name}
+                                            className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-50 filter blur-sm group-hover:blur-none transition-all duration-500"
+                                        />
+
+                                        <div className="relative z-10">
+                                            <div className="text-purple-400 mb-4">
+                                                <service.icon className="h-10 w-10" />
+                                            </div>
+                                            <h3 className="text-xl font-bold mb-2">{service.name}</h3>
+                                            <p className="text-gray-400">{service.description}</p>
+                                        </div>
+                                    </div>
+                                </Link>
                             </motion.div>
                         ))}
                     </motion.div>
@@ -187,6 +229,8 @@ const Home: React.FC = () => {
                 </div>
             </motion.section>
 
+            {/* REST OF YOUR FILE REMAINS EXACTLY SAME */}
+            
             <motion.section 
                 className="py-20"
                 variants={sectionVariants}

@@ -39,8 +39,7 @@ const About: React.FC = () => {
                         className="mt-20 grid md:grid-cols-2 gap-12 items-center"
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                     >
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}

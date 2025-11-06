@@ -57,8 +57,7 @@ const ProjectDetail: React.FC = () => {
                         className="mb-12 rounded-2xl overflow-hidden shadow-2xl shadow-purple-900/20 border border-gray-800"
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                     >
                         <img src={project.image} alt={project.title} className="w-full h-auto object-cover"/>
                     </motion.div>
@@ -66,8 +65,7 @@ const ProjectDetail: React.FC = () => {
                     <motion.div
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                     >
                         <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">About The Project</h2>
                         <div className="max-w-4xl prose prose-lg prose-invert prose-p:text-gray-300 text-gray-300 leading-relaxed">

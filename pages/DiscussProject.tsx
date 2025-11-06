@@ -40,8 +40,7 @@ const DiscussProject: React.FC = () => {
                     <motion.div 
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                         className="max-w-4xl mx-auto bg-gray-900/50 p-8 sm:p-12 rounded-2xl border border-gray-800 backdrop-blur-sm"
                     >
                         <form className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">

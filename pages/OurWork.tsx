@@ -95,8 +95,7 @@ const OurWork: React.FC = () => {
                         className="bg-gray-900/50 rounded-xl border border-gray-800 backdrop-blur-sm p-2 mb-12"
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                     >
                         <div className="relative flex items-center">
                             <AnimatePresence>

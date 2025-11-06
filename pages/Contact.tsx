@@ -42,8 +42,7 @@ const Contact: React.FC = () => {
                         className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 bg-gray-900/50 p-8 sm:p-12 rounded-xl border border-gray-800 backdrop-blur-sm"
                         variants={sectionVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        animate="visible"
                     >
                         <motion.form 
                             initial={{ opacity: 0, x: -30 }}
