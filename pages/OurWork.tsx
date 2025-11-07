@@ -15,7 +15,6 @@ const OurWork: React.FC = () => {
     const checkArrows = useCallback(() => {
         if (navRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = navRef.current;
-            // Use a small buffer to prevent flickering on some browsers
             setShowLeftArrow(scrollLeft > 5);
             setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 5);
         }
@@ -47,30 +46,44 @@ const OurWork: React.FC = () => {
         }
     };
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    };
-
-    const sectionVariants: Variants = {
-        hidden: { opacity: 0, y: 50 },
+    const filterBarVariants: Variants = {
+        hidden: { opacity: 0, y: -20 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 0.8,
-                ease: [0.6, 0.05, 0.01, 0.9],
+                duration: 0.5,
+                ease: 'easeOut'
             },
         },
+    };
+
+    const gridContainerVariants: Variants = {
+        hidden: { transition: { staggerChildren: 0.08, staggerDirection: -1 } },
+        visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+    };
+
+    const projectCardVariants: Variants = {
+        hidden: { opacity: 0, scale: 0.8, y: 50 },
+        visible: { 
+            opacity: 1, 
+            scale: 1,
+            y: 0, 
+            transition: { 
+                type: 'spring',
+                stiffness: 100,
+                damping: 12,
+            } 
+        },
+        exit: { 
+            opacity: 0, 
+            scale: 0.8, 
+            y: -50,
+            transition: {
+                duration: 0.3,
+                ease: 'anticipate'
+            }
+        }
     };
     
     return (
@@ -92,8 +105,8 @@ const OurWork: React.FC = () => {
                     </motion.div>
 
                     <motion.div 
-                        className="bg-gray-900/50 rounded-xl border border-gray-800 backdrop-blur-sm p-2 mb-12"
-                        variants={sectionVariants}
+                        className="bg-gray-900/50 rounded-xl border border-gray-800 backdrop-blur-sm p-2 mb-12 sticky top-[70px] lg:top-[80px] z-20"
+                        variants={filterBarVariants}
                         initial="hidden"
                         animate="visible"
                     >
@@ -104,7 +117,7 @@ const OurWork: React.FC = () => {
                                         <motion.div
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             transition={{ duration: 0.2 }}
-                                            className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0A0A10] to-transparent z-10 pointer-events-none" 
+                                            className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-900/50 to-transparent z-10 pointer-events-none" 
                                         />
                                         <motion.button
                                             initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
@@ -125,10 +138,17 @@ const OurWork: React.FC = () => {
                                         onClick={() => setActiveCategory(category.id)}
                                         className={`relative shrink-0 px-4 py-2 text-sm md:text-base font-semibold rounded-lg transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-purple-500
                                         ${activeCategory === category.id 
-                                            ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg' 
+                                            ? 'text-white' 
                                             : 'text-gray-400 hover:text-white hover:bg-gray-800/60'}`}
                                     >
                                         {category.name}
+                                        {activeCategory === category.id && (
+                                            <motion.div
+                                                className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg -z-10"
+                                                layoutId="active-category-pill"
+                                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
                                     </button>
                                 ))}
                             </div>
@@ -139,7 +159,7 @@ const OurWork: React.FC = () => {
                                         <motion.div 
                                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                             transition={{ duration: 0.2 }}
-                                            className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0A0A10] to-transparent z-10 pointer-events-none"
+                                            className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-900/50 to-transparent z-10 pointer-events-none"
                                         />
                                         <motion.button
                                             initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
@@ -155,24 +175,35 @@ const OurWork: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    <motion.div
-                        key={activeCategory}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-                    >
-                        {projectsData[activeCategory].map((project) => (
-                            <motion.div key={`${activeCategory}-${project.id}`} variants={itemVariants}>
-                                <Link to={`/work/${activeCategory}/${project.id}`} className="block group">
-                                    <div className="overflow-hidden rounded-xl border border-gray-800/50 group-hover:border-purple-500/50 transition-colors duration-300">
-                                        <img src={project.image} alt={project.title} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" />
-                                    </div>
-                                    <h3 className="mt-4 text-xl font-bold text-white group-hover:text-purple-400 transition-colors">{project.title}</h3>
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeCategory}
+                            variants={gridContainerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+                        >
+                            {projectsData[activeCategory].map((project) => (
+                                <motion.div key={`${activeCategory}-${project.id}`} variants={projectCardVariants} className="h-full">
+                                    <Link to={`/work/${activeCategory}/${project.id}`} className="block group bg-gray-900/50 p-4 rounded-xl border border-gray-800/50 hover:border-purple-500/50 transition-all duration-300 flex flex-col h-full">
+                                        <div className="overflow-hidden rounded-lg">
+                                            <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                                        </div>
+                                        <div className="mt-4 flex flex-col flex-grow">
+                                            <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">{project.title}</h3>
+                                            <p className="text-gray-400 text-sm mt-2 flex-grow">
+                                                {project.description.substring(0, 100)}...
+                                            </p>
+                                            <span className="mt-4 font-semibold text-purple-400 transition-all group-hover:text-white self-start">
+                                                View Details &rarr;
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </AnimatedPage>

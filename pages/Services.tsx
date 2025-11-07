@@ -4,12 +4,12 @@ import AnimatedPage from '../components/AnimatedPage';
 import { services } from '../constants';
 import { motion, Variants } from 'framer-motion';
 
-import webdev from '../assets/webdev.png'
-import appdev from '../assets/appdev.png'
-import video from '../assets/video.png'
-import erp from '../assets/erp.png'
-import crm from '../assets/crm.png'
-import ai from '../assets/ai.png'
+import webdev from '../assets/webdev.webp'
+import appdev from '../assets/appdev.webp'
+import video from '../assets/video.webp'
+import erp from '../assets/erp.webp'
+import crm from '../assets/crm.webp'
+import ai from '../assets/ai.webp'
 
 // ✅ Correct image mapping based on service.id
 const serviceImagesMap: { [key: string]: string } = {

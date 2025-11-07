@@ -5,9 +5,9 @@ import AnimatedPage from '../components/AnimatedPage';
 import { services } from '../constants';
 import { FastDeliveryIcon, FlexiblePricingIcon, StrongCommunicationIcon, ScalableSolutionsIcon, SupportIcon } from '../components/Icons';
 
-import webdev from '../assets/webdev.png'
-import appdev from '../assets/appdev.png'
-import video from '../assets/video.png'
+import webdev from '../assets/webdev.webp'
+import appdev from '../assets/appdev.webp'
+import video from '../assets/video.webp'
 
 const serviceImagesMap: { [key: string]: string } = {
     "web-development": webdev,

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { navLinks, services } from '../constants';
-import { LogoIcon } from './Icons';
-import logo from '../assets/logo123.png'
+import logo from '../assets/logo123.webp'; // ✅ Your local logo
 
 const NavItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
   <NavLink
@@ -56,7 +55,7 @@ const DesktopNav: React.FC = () => {
   return (
     <nav className="hidden lg:flex items-center justify-between w-full">
       <Link to="/">
-      <img src={logo} alt="PGS logo" className="w-20 h-auto" />
+        <img src={logo} alt="PGS logo" className="w-20 h-auto" /> {/* ✅ Desktop logo correct */}
       </Link>
 
       <div className="flex items-center space-x-6">
@@ -121,7 +120,6 @@ const MobileNav: React.FC = () => {
       document.body.style.width = '';
       document.body.style.left = '';
       document.body.style.right = '';
-      // We don't manually scroll here anymore to let the main app handler manage it.
     };
   }, [isOpen]);
 
@@ -140,9 +138,12 @@ const MobileNav: React.FC = () => {
   return (
     <>
       <div className="lg:hidden flex justify-between items-center w-full relative">
+        
+        {/* ✅ FIXED — Replaced old LogoIcon with NEW LOCAL IMAGE */}
         <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-          <LogoIcon className="h-10 w-10" />
+          <img src={logo} alt="PGS logo" className="h-10 w-auto" />
         </Link>
+
         <div />
         <button onClick={toggleMenu} className="z-[10001] p-2">
           <motion.div animate={isOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-around">
