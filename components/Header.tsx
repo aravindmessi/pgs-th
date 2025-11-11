@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { navLinks, services } from '../constants';
-import logo from '../assets/logo123.webp'; // ✅ Your local logo
+import { LogoIcon } from './Icons';
+import logo from '../assets/logo.webp'
 
 const NavItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
   <NavLink
@@ -55,7 +56,8 @@ const DesktopNav: React.FC = () => {
   return (
     <nav className="hidden lg:flex items-center justify-between w-full">
       <Link to="/">
-        <img src={logo} alt="PGS logo" className="w-20 h-auto" /> {/* ✅ Desktop logo correct */}
+        {/* ↓↓↓ FIXED LOGO SIZE HERE ↓↓↓ */}
+        <img src={logo} alt="logo" className="h-10 w-auto" />
       </Link>
 
       <div className="flex items-center space-x-6">
@@ -103,26 +105,6 @@ const MobileNav: React.FC = () => {
     setServicesOpen(false);
   }, [location]);
 
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    
-    return () => {
-      const scrollYRestored = parseInt(document.body.style.top || '0') * -1;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-    };
-  }, [isOpen]);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const mobileMenuVariants: Variants = {
@@ -139,71 +121,37 @@ const MobileNav: React.FC = () => {
     <>
       <div className="lg:hidden flex justify-between items-center w-full relative">
         
-        {/* ✅ FIXED — Replaced old LogoIcon with NEW LOCAL IMAGE */}
+        {/* ↓↓↓ FIXED MOBILE LOGO SIZE HERE ↓↓↓ */}
         <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-          <img src={logo} alt="PGS logo" className="h-10 w-auto" />
+          <img src={logo} alt="logo" className="h-8 w-auto" />
         </Link>
 
-        <div />
         <button onClick={toggleMenu} className="z-[10001] p-2">
           <motion.div animate={isOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-around">
-            <motion.span
-              variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5.5 } }}
-              className="w-full h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }}
-              className="w-full h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5.5 } }}
-              className="w-full h-0.5 bg-white rounded-full"
-            />
+            <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5.5 } }} className="w-full h-0.5 bg-white rounded-full" />
+            <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="w-full h-0.5 bg-white rounded-full" />
+            <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5.5 } }} className="w-full h-0.5 bg-white rounded-full" />
           </motion.div>
         </button>
       </div>
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            variants={mobileMenuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            className="fixed inset-0 z-[10000] bg-[#0A0A10]/90 backdrop-blur-md"
-          >
+          <motion.div variants={mobileMenuVariants} initial="closed" animate="open" exit="closed" className="fixed inset-0 z-[10000] bg-[#0A0A10]/90 backdrop-blur-md">
             <div className="flex h-full w-full items-center justify-center">
-              <motion.nav
-                className="flex flex-col items-center gap-8 text-3xl"
-                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-              >
+              <motion.nav className="flex flex-col items-center gap-8 text-3xl" variants={{ visible: { transition: { staggerChildren: 0.1 } } }} initial="hidden" animate="visible" exit="hidden">
                 {navLinks.map((link) =>
                   link.dropdown ? (
                     <motion.div key={link.name} variants={navItemVariants} className="text-center w-full">
-                      <button
-                        onClick={() => setServicesOpen(!servicesOpen)}
-                        className="py-2 text-gray-300 hover:text-white w-full"
-                      >
+                      <button onClick={() => setServicesOpen(!servicesOpen)} className="py-2 text-gray-300 hover:text-white w-full">
                         {link.name}
                       </button>
                       <AnimatePresence>
                         {servicesOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden"
-                          >
+                          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                             <div className="flex flex-col items-center mt-2 space-y-3">
                               {link.dropdown.map((service) => (
-                                <Link
-                                  key={service.id}
-                                  to={`/services/${service.id}`}
-                                  className="text-xl text-gray-400 hover:text-purple-400"
-                                >
+                                <Link key={service.id} to={`/services/${service.id}`} className="text-xl text-gray-400 hover:text-purple-400">
                                   {service.name}
                                 </Link>
                               ))}
@@ -214,10 +162,7 @@ const MobileNav: React.FC = () => {
                     </motion.div>
                   ) : (
                     <motion.div key={link.name} variants={navItemVariants}>
-                      <Link
-                        to={link.path}
-                        className="block py-2 text-gray-300 hover:text-white transition-colors"
-                      >
+                      <Link to={link.path} className="block py-2 text-gray-300 hover:text-white transition-colors">
                         {link.name}
                       </Link>
                     </motion.div>
@@ -242,11 +187,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'py-2 bg-black/50 backdrop-blur-md' : 'py-6'
-      }`}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-2 bg-black/50 backdrop-blur-md' : 'py-6'}`}>
       <div className="container mx-auto px-6 flex items-center">
         <DesktopNav />
         <MobileNav />
