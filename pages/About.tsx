@@ -106,7 +106,7 @@ const About: React.FC = () => {
                                 Whether it's a complex <strong>Mobile App</strong> that solves a user's problem or a <strong>Video Ad</strong> that captures an emotion, we bring a blend of creativity and technical expertise that is hard to match.
                             </p>
                             <div className="flex flex-wrap gap-3 mt-6">
-                                {["Creative Strategy", "UI/UX Design", "Full Stack Dev", "Cinematography", "Brand Identity"].map((tag) => (
+                                {["Creative Strategy","Professional Video Editing","Full Stack Dev", "Cinematography", "Brand Identity"].map((tag) => (
                                     <span key={tag} className="px-4 py-2 bg-purple-900/30 text-purple-300 rounded-full text-sm font-medium border border-purple-500/20">
                                         {tag}
                                     </span>

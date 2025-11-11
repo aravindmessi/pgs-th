@@ -127,11 +127,13 @@ const MobileNav: React.FC = () => {
 
   return (
     <>
-      <div className="lg:hidden flex justify-between items-center w-full relative z-[10002]">
+      <div className="lg:hidden flex items-center w-full relative z-[10002] min-h-[40px]">
         
-        <Link to="/">
-          <img src={logo} alt="logo" className="h-8 w-auto" />
-        </Link>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Link to="/">
+            <img src={logo} alt="logo" className="h-8 w-auto" />
+            </Link>
+        </div>
 
         <button onClick={toggleMenu} className="z-[10001] p-2 ml-auto text-white">
           <motion.div animate={isOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-around">

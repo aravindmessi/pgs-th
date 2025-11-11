@@ -1,4 +1,3 @@
-
 import React from 'react';
 import AnimatedPage from '../components/AnimatedPage';
 import { motion, Variants } from 'framer-motion';
@@ -54,11 +53,11 @@ const Contact: React.FC = () => {
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-300">Full Name</label>
                                 <input type="text" id="name" className={inputStyle} />
                             </div>
-                             <div>
+                            <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email Address</label>
                                 <input type="email" id="email" className={inputStyle} />
                             </div>
-                             <div>
+                            <div>
                                 <label htmlFor="service" className="block text-sm font-medium text-gray-300">Select Service</label>
                                 <select id="service" required className={inputStyle} defaultValue="">
                                     <option value="" disabled>Please select a service</option>
@@ -67,16 +66,17 @@ const Contact: React.FC = () => {
                                     ))}
                                 </select>
                             </div>
-                             <div>
+                            <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-gray-300">Message</label>
                                 <textarea id="message" rows={4} className={inputStyle}></textarea>
                             </div>
-                             <div>
+                            <div>
                                 <button type="submit" className="w-full px-6 py-3 text-base font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300">
                                     Submit
                                 </button>
                             </div>
                         </motion.form>
+
                         <motion.div
                            initial={{ opacity: 0, x: 30 }}
                            animate={{ opacity: 1, x: 0 }}
@@ -94,6 +94,7 @@ const Contact: React.FC = () => {
                                         <a href="mailto:info@proglobalsolutions.in" className="text-gray-300 hover:text-purple-400 transition-colors">info@proglobalsolutions.in</a>
                                     </div>
                                 </div>
+
                                 <div className="flex items-start">
                                     <PhoneIcon className="h-6 w-6 mr-4 mt-1 text-purple-400 shrink-0" />
                                     <div>
@@ -101,15 +102,20 @@ const Contact: React.FC = () => {
                                         <a href="tel:9360620595" className="text-gray-300 hover:text-purple-400 transition-colors">9360620595</a>
                                     </div>
                                 </div>
+
+                                {/* ✅ UPDATED ADDRESS */}
                                 <div className="flex items-start">
                                     <LocationIcon className="h-6 w-6 mr-4 mt-1 text-purple-400 shrink-0" />
                                     <div>
                                         <h4 className="font-semibold text-white">Address</h4>
                                         <address className="not-italic text-gray-300">
-                                            IT Office<br />
-                                            F3,1/113, Jmj Complex,<br />
-                                            TNAU Nagar, Othakadai<br />
-                                            Madurai - 625107, Tamil Nadu.
+                                            <span className="font-semibold text-white">Studio:</span><br />
+                                            F3,1/113, Jmj Complex, TNAU Nagar,<br />
+                                            Othakadai Madurai - 625107, Tamil Nadu.<br /><br />
+
+                                            <span className="font-semibold text-white">Main Branch:</span><br />
+                                            21-A SM St, Opp BSNL Office,<br />
+                                            Sivakasi, Tamil Nadu – 626123
                                         </address>
                                     </div>
                                 </div>
