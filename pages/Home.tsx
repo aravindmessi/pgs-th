@@ -29,13 +29,6 @@ const Home: React.FC = () => {
     latest > prev && latest > 100 ? headingControls.start("hidden") : headingControls.start("visible");
   });
 
-  const testimonials = [
-    { name: "Arjun Kumar", company: "TechCorp", quote: "PGS transformed our online presence. Their work is pure quality.", avatar: arjun },
-    { name: "Shanthi Venkatesh", company: "Innovate LLC", quote: "They delivered beyond expectations, on time.", avatar: shanthi },
-    { name: "Karthik Raj", company: "MarketPro", quote: "Very easy to work with, excellent communication.", avatar: karthik },
-    { name: "Kishore", company: "Future Ventures", quote: "Best agency decision we made.", avatar: kishore },
-  ];
-
   const benefits = [
     { icon: FastDeliveryIcon, title: "Fast Delivery Timelines", description: "We complete projects on time without excuses." },
     { icon: FlexiblePricingIcon, title: "Flexible Pricing", description: "Solutions tailored to different budget sizes." },
@@ -43,6 +36,9 @@ const Home: React.FC = () => {
     { icon: ScalableSolutionsIcon, title: "Scalable Solutions", description: "Designed to grow with your business." },
     { icon: SupportIcon, title: "24/7 Dedicated Support", description: "Fast and responsive support anytime." },
   ];
+
+  // CLIENT LOGOS (from AI Studio section)
+  const clientLogoIds = Array.from({ length: 24 }, (_, i) => (i % 12) + 1);
 
   return (
     <AnimatedPage>
@@ -123,18 +119,27 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* ✅ OUR CLIENTS SECTION (kept intact) */}
       <section className="py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-12">What Our Clients Say</h2>
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Our Clients</h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              We're proud to have collaborated with some amazing companies.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((t, i) => (
-              <div key={i} className="bg-gray-900/40 p-8 rounded-lg border border-gray-800 shadow-lg backdrop-blur-sm hover:-translate-y-2 transition">
-                <img src={t.avatar} className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-purple-500/50 object-cover" />
-                <p className="text-gray-300 italic mb-4">"{t.quote}"</p>
-                <h4 className="text-white font-bold text-lg">{t.name}</h4>
-                <p className="text-gray-400">{t.company}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-8">
+            {clientLogoIds.map((id, index) => (
+              <div
+                key={index}
+                className="group bg-gray-900/50 flex justify-center items-center h-32 sm:h-36 p-6 rounded-xl border border-gray-800 backdrop-blur-sm transform transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20"
+              >
+                <img
+                  src={`https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-${id}.svg`}
+                  alt={`Client Logo ${index + 1}`}
+                  className="h-8 md:h-10 w-auto object-contain transition-all duration-300 filter invert grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+                />
               </div>
             ))}
           </div>
@@ -157,7 +162,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
     </AnimatedPage>
   );
 };
