@@ -18,7 +18,7 @@ import {
 
 import webd from "./assets/webd.webp";
 import appd from "./assets/appd.webp";
-import video from "./assets/video.webp";
+import video from "./assets/videp.webp";
 
 // ✅ Clients Logos (24) — filenames checked
 import bfm from "./assets/blissfullmind.webp";
@@ -254,7 +254,7 @@ const Home: React.FC = () => {
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               We’re proud to have collaborated with these amazing businesses.
             </p>
-            <img src={bfm} alt="test" style={{ width: "200px", margin: "20px auto", display: "block" }} />
+         
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-8">

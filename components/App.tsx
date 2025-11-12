@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import Header from './Header';
 import Footer from './Footer';
 import ParticleBackground from './ParticleBackground';
-import Home from '../pages/Home';
+import Home from '../Home';
 import About from '../pages/About';
 import Services from '../pages/Services';
 import ServiceDetail from '../pages/ServiceDetail';
