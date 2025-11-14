@@ -78,7 +78,6 @@ const serviceImages = {
   "video-shooting-ads": video,
 };
 
-/* ------------------ Animations ------------------ */
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -129,7 +128,6 @@ const Home: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
 
-          {/* HERO CONTENT */}
           <motion.div variants={staggerParent} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
             <motion.h1 variants={staggerParent} className="font-extrabold text-white mb-6 flex flex-col items-center">
               <motion.span variants={fadeDown} className="text-4xl md:text-7xl">
@@ -149,7 +147,6 @@ const Home: React.FC = () => {
               Our company specializes in providing innovative digital marketing solutions tailored to elevate your brand.
             </motion.p>
 
-            {/* BUTTONS */}
             <motion.div variants={staggerParent} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.div variants={zoomIn}>
                 <Link
@@ -233,7 +230,6 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* ✔ FIXED ANIMATION TRIGGER HERE */}
           <motion.div
             variants={staggerParent}
             initial="hidden"
@@ -242,7 +238,8 @@ const Home: React.FC = () => {
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-12"
           >
             {clientLogos.map((logo, index) => {
-              const bigger = [0,1,2,3,4,5,7,9,10,11,12,13,15,16,19,21,23];
+              const bigger = [5, 19]; // ✔ UPDATED ONLY THIS
+
               const isBigger = bigger.includes(index);
 
               return (
@@ -251,7 +248,6 @@ const Home: React.FC = () => {
                   variants={index % 2 === 0 ? fadeLeft : fadeRight}
                   className="flex flex-col items-center text-center group"
                 >
-                  {/* POPUP HOVER / TOUCH EFFECT */}
                   <motion.img
                     variants={zoomIn}
                     whileHover={{ scale: 1.25 }}
@@ -294,7 +290,6 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
 
-            {/* 1 — Video Shooting & Ads */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path d="M3 7h13v10H3z" />
@@ -308,7 +303,6 @@ const Home: React.FC = () => {
               </p>
             </div>
 
-            {/* 2 */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path d="M3 3h18v6H3V3zm0 12h18v6H3v-6z"/>
@@ -317,7 +311,6 @@ const Home: React.FC = () => {
               <p className="text-gray-400 text-sm">Modern UI/UX driven by clarity and functionality.</p>
             </div>
 
-            {/* 3 */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path d="M12 6v6l4 2"/>
@@ -327,7 +320,6 @@ const Home: React.FC = () => {
               <p className="text-gray-400 text-sm">Projects delivered fast without compromising quality.</p>
             </div>
 
-            {/* 4 */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path d="M6 18L18 6M6 6l12 12"/>
@@ -336,7 +328,6 @@ const Home: React.FC = () => {
               <p className="text-gray-400 text-sm">Optimized websites and apps built for speed.</p>
             </div>
 
-            {/* 5 */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-3.5L6 21l1.5-7.5L2 9h7z"/>
@@ -345,7 +336,6 @@ const Home: React.FC = () => {
               <p className="text-gray-400 text-sm">Premium service trusted by 100+ businesses.</p>
             </div>
 
-            {/* 6 */}
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 hover:border-purple-500/40 transition-all duration-300">
               <svg className="w-14 h-14 text-purple-400 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="9"/>
@@ -359,7 +349,6 @@ const Home: React.FC = () => {
 
         </div>
       </section>
-
 
     </AnimatedPage>
   );
