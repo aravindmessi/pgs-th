@@ -105,13 +105,8 @@ const MobileNav: React.FC = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
@@ -128,26 +123,27 @@ const MobileNav: React.FC = () => {
   return (
     <>
       <div className="lg:hidden flex items-center w-full relative z-[10002] min-h-[40px]">
-        
+
+        {/* MOBILE HEADER LOGO - UPDATED SIZE */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Link to="/">
-            <img src={logo} alt="logo" className="h-8 w-auto" />
-            </Link>
+          <Link to="/">
+            <img src={logo} alt="logo" className="h-12 w-auto" /> 
+          </Link>
         </div>
 
         <button onClick={toggleMenu} className="z-[10001] p-2 ml-auto text-white">
           <motion.div animate={isOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-around">
             <motion.span 
-                variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 8 } }} 
-                className="w-full h-0.5 bg-white rounded-full origin-center" 
+              variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 8 } }} 
+              className="w-full h-0.5 bg-white rounded-full origin-center" 
             />
             <motion.span 
-                variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} 
-                className="w-full h-0.5 bg-white rounded-full" 
+              variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} 
+              className="w-full h-0.5 bg-white rounded-full" 
             />
             <motion.span 
-                variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -8 } }} 
-                className="w-full h-0.5 bg-white rounded-full origin-center" 
+              variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -8 } }} 
+              className="w-full h-0.5 bg-white rounded-full origin-center" 
             />
           </motion.div>
         </button>
@@ -155,19 +151,19 @@ const MobileNav: React.FC = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            variants={mobileMenuVariants} 
-            initial="closed" 
-            animate="open" 
-            exit="closed" 
+          <motion.div
+            variants={mobileMenuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
             className="fixed inset-0 z-[10000] bg-[#0A0A10]/95 backdrop-blur-md h-[100dvh] flex flex-col justify-center overflow-hidden"
           >
-             <div className="flex h-full w-full items-center justify-center overflow-y-auto px-6 py-20">
-              <motion.nav 
-                className="flex flex-col items-center gap-6 text-2xl w-full max-w-md" 
-                variants={{ visible: { transition: { staggerChildren: 0.05 } } }} 
-                initial="hidden" 
-                animate="visible" 
+            <div className="flex h-full w-full items-center justify-center overflow-y-auto px-6 py-20">
+              <motion.nav
+                className="flex flex-col items-center gap-6 text-2xl w-full max-w-md"
+                variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+                initial="hidden"
+                animate="visible"
                 exit="hidden"
               >
                 {navLinks.map((link) =>
@@ -192,7 +188,7 @@ const MobileNav: React.FC = () => {
                     </motion.div>
                   ) : (
                     <motion.div key={link.name} variants={navItemVariants}>
-                       <Link to={link.path} className="py-2 block text-gray-300 hover:text-white font-semibold hover:text-purple-400 transition-colors">
+                      <Link to={link.path} className="py-2 block text-gray-300 hover:text-white font-semibold hover:text-purple-400 transition-colors">
                         {link.name}
                       </Link>
                     </motion.div>
@@ -208,39 +204,29 @@ const MobileNav: React.FC = () => {
 };
 
 const Header: React.FC = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    // Always show background on pages other than home if preferred, or consistent behavior
-    const isHome = location.pathname === '/';
-
-    return (
-        <header 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled ? 'bg-[#0A0A10]/80 backdrop-blur-md py-3 shadow-lg shadow-purple-900/10' : 'bg-transparent py-5'
-            }`}
-        >
-            <div className="container mx-auto px-6">
-                <DesktopNav />
-                <MobileNav />
-            </div>
-        </header>
-    );
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#0A0A10]/80 backdrop-blur-md py-3 shadow-lg shadow-purple-900/10'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="container mx-auto px-6">
+        <DesktopNav />
+        <MobileNav />
+      </div>
+    </header>
+  );
 };
 
 export default Header;

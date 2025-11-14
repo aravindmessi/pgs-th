@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     const socialLinks = [
         { name: 'Twitter', icon: TwitterIcon, href: '#' },
         { name: 'Instagram', icon: InstagramIcon, href: '#' },
-        { name: 'LinkedIn', icon: LinkedInIcon, href: 'https://www.linkedin.com/company/proglobalsolutions-in/' }, // ✅ UPDATED
+        { name: 'LinkedIn', icon: LinkedInIcon, href: 'https://www.linkedin.com/company/proglobalsolutions-in/' },
         { name: 'Dribbble', icon: DribbbleIcon, href: '#' }
     ];
 
@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <img src={logo} alt="logo" className="h-10 w-auto" />
                         <p className="text-sm text-gray-400 max-w-xs">
-                           Innovative digital solutions to elevate your brand's presence and drive growth.
+                            Innovative digital solutions to elevate your brand's presence and drive growth.
                         </p>
                     </div>
 
@@ -45,22 +45,35 @@ const Footer: React.FC = () => {
 
                             <li className="flex items-start">
                                 <LocationIcon className="h-5 w-5 mr-3 mt-1 text-purple-400 shrink-0"/>
+                                
                                 <address className="not-italic text-sm text-gray-400 text-left">
-                                    <span className="font-semibold text-white">Studio:</span><br />
+
+                                    <span className="font-semibold text-white">Head Office:</span><br />
+
                                     F3,1/113, Jmj Complex, TNAU Nagar, Othakadai Madurai - 625107, Tamil Nadu.<br /><br />
 
                                     <span className="font-semibold text-white">Main Branch:</span><br />
-                                    21-A SM St, Opp BSNL Office, Sivakasi, Tamil Nadu – 626123
+
+                                    21-A SM St, Opp BSNL Office, Sivakasi, Tamil Nadu – 626123<br /><br />
+
+                                    <span className="font-semibold text-white">Studio:</span><br />
+                                    
+                                    4-4-35A, 1st Street Railor Nagar, Koodal Nagar, Madurai – 625018
                                 </address>
                             </li>
 
                             <li className="flex items-center">
                                 <MailIcon className="h-5 w-5 mr-3 text-purple-400 shrink-0"/>
-                                <a href="mailto:info@proglobalsolutions.in" className="text-sm text-gray-400 hover:text-purple-400 transition-colors">info@proglobalsolutions.in</a>
+                                <a href="mailto:info@proglobalsolutions.in" className="text-sm text-gray-400 hover:text-purple-400 transition-colors">
+                                    info@proglobalsolutions.in
+                                </a>
                             </li>
+
                             <li className="flex items-center">
                                 <PhoneIcon className="h-5 w-5 mr-3 text-purple-400 shrink-0"/>
-                                <a href="tel:9360620595" className="text-sm text-gray-400 hover:text-purple-400 transition-colors">9360620595</a>
+                                <a href="tel:9360620595" className="text-sm text-gray-400 hover:text-purple-400 transition-colors">
+                                    9360620595
+                                </a>
                             </li>
                         </ul>
                     </div>
