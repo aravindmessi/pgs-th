@@ -56,7 +56,7 @@ export const AIIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
-/* Navigation Arrows */
+/* --- NAVIGATION ICONS --- */
 export const ChevronLeftIcon = ({ className }: IconProps) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -69,13 +69,14 @@ export const ChevronRightIcon = ({ className }: IconProps) => (
   </svg>
 );
 
-/* Social Icons (Replaced with clean versions) */
-export const TwitterIcon = ({ className }: IconProps) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-    <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 3c-2.5 0-4.5 2-4.5 4.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+/* --- ✔️ UPDATED OFFICIAL X ICON (based on your screenshot) --- */
+export const XIcon = ({ className }: IconProps) => (
+  <svg className={className} viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+    <path d="M714.163 536.244L1160 0H1057.98L669.482 450.043L372.947 0H0L463.243 681.159L0 1200H102.02L516.332 727.365L843.053 1200H1200L714.137 536.244H714.163ZM566.93 661.371L522.34 596.105L139.424 78.029H322.836L611.778 498.432L656.367 565.157L1065.01 1121.97H881.597L566.93 661.397V661.371Z"/>
   </svg>
 );
 
+/* --- SOCIAL ICONS --- */
 export const InstagramIcon = ({ className }: IconProps) => (
   <svg className={className} stroke="currentColor" fill="none" viewBox="0 0 24 24">
     <rect width="20" height="20" x="2" y="2" rx="5" />
@@ -97,7 +98,7 @@ export const DribbbleIcon = ({ className }: IconProps) => (
   </svg>
 );
 
-/* Contact & UI Support Icons */
+/* --- CONTACT ICONS --- */
 export const MailIcon = ({ className }: IconProps) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
