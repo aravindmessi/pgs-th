@@ -13,7 +13,7 @@ import webd from "./assets/webd.webp";
 import appd from "./assets/appd.webp";
 import video from "./assets/videp.webp";
 
-import bfm from "./assets/blissfullmind.webp";
+import bfm from "./assets/Blissfullmind.webp";
 import cp from "./assets/cell_park.webp";
 import mb from "./assets/mobile_bazar.webp";
 import ifi from "./assets/iris_logo.webp";
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
             {/* BUTTONS */}
             <motion.div variants={staggerParent} className="flex flex-col sm:flex-row items-center justify-center gap-4">
 
-              {/* ⭐ PREMIUM RAINBOW SWEEP HOVER BUTTON (P2) */}
+              {/* ⭐ PREMIUM RAINBOW SWEEP HOVER BUTTON */}
               <motion.div variants={zoomIn}>
                 <Link
                   to="/contact"
@@ -158,7 +158,6 @@ const Home: React.FC = () => {
                 </Link>
               </motion.div>
 
-              {/* KEYFRAMES */}
               <style>{`
                 @keyframes rainbow {
                   0% { background-position: 0% 50%; }
@@ -167,7 +166,6 @@ const Home: React.FC = () => {
                 }
               `}</style>
 
-              {/* Our Work (unchanged) */}
               <motion.div variants={zoomIn}>
                 <Link
                   to="/work"
@@ -224,7 +222,9 @@ const Home: React.FC = () => {
 
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Clients</h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">We’re proud to have collaborated with these amazing businesses.</p>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              We’re proud to have collaborated with these amazing businesses.
+            </p>
           </div>
 
           <motion.div
@@ -239,8 +239,11 @@ const Home: React.FC = () => {
               const isBigger = bigger.includes(index);
 
               return (
-                <motion.div key={index} variants={index % 2 === 0 ? fadeLeft : fadeRight} className="flex flex-col items-center text-center group">
-
+                <motion.div
+                  key={index}
+                  variants={index % 2 === 0 ? fadeLeft : fadeRight}
+                  className="flex flex-col items-center text-center group"
+                >
                   <motion.img
                     variants={zoomIn}
                     whileHover={{ scale: 1.25 }}
@@ -260,64 +263,79 @@ const Home: React.FC = () => {
                   >
                     {clientNames[index]}
                   </motion.p>
-
                 </motion.div>
               );
             })}
           </motion.div>
-
         </div>
       </section>
 
       {/* ---------------- WHY CHOOSE US ---------------- */}
-      <section className="py-24 bg-[#0A0A10]">
+      {/* ❗ Hidden on mobile ONLY */}
+      <section className="hidden sm:block py-24 bg-[#0A0A10]">
         <div className="container mx-auto px-6">
 
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">We provide powerful, modern, and reliable digital solutions to grow your business.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose Us
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              We provide powerful, modern, and reliable digital solutions to grow your business.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M3 7h13v10H3z" /><path d="M16 10l5-3v10l-5-3" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path d="M3 7h13v10H3z" /><path d="M16 10l5-3v10l-5-3" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">Video Shooting & Ads</h3>
               <p className="text-gray-400 text-sm">Professional video production and high-impact advertising content for your brand.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M3 3h18v6H3V3zm0 12h18v6H3v-6z" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path d="M3 3h18v6H3V3zm0 12h18v6H3v-6z" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">Creative Designs</h3>
               <p className="text-gray-400 text-sm">Modern UI/UX driven by clarity and functionality.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 6v6l4 2" /><circle cx="12" cy="12" r="10" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path d="M12 6v6l4 2" /><circle cx="12" cy="12" r="10" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">On-Time Delivery</h3>
               <p className="text-gray-400 text-sm">Projects delivered fast without compromising quality.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">High Performance</h3>
               <p className="text-gray-400 text-sm">Optimized websites and apps built for speed.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-3.5L6 21l1.5-7.5L2 9h7z" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-3.5L6 21l1.5-7.5L2 9h7z" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">Trusted Quality</h3>
               <p className="text-gray-400 text-sm">Premium service trusted by 100+ businesses.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
               transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
-              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>
+              <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" />
+              </svg>
               <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
               <p className="text-gray-400 text-sm">We’re always available when your business needs us.</p>
             </div>
