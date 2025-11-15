@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Column 2: Quick Links — HIDDEN ON MOBILE */}
+                    {/* Column 2: Quick Links */}
                     <div className="hidden md:flex flex-col items-center md:items-start">
                         <h4 className="font-semibold text-white mb-4 text-lg">Quick Links</h4>
                         <ul className="space-y-3">
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
                                     <span className="font-semibold text-white">Head Office:</span><br />
                                     F3,1/113, Jmj Complex, TNAU Nagar, Othakadai Madurai - 625107, Tamil Nadu.<br /><br />
 
-                                    <span className="font-semibold text-white">Main Branch:</span><br />
+                                    <span className="font-semibold text-white">Branch Office::</span><br />
                                     21-A SM St, Opp BSNL Office, Sivakasi, Tamil Nadu – 626123<br /><br />
 
                                     <span className="font-semibold text-white">Studio:</span><br />
@@ -69,11 +69,20 @@ const Footer: React.FC = () => {
                                 </a>
                             </li>
 
-                            <li className="flex items-center">
-                                <PhoneIcon className="h-5 w-5 mr-3 text-purple-400 shrink-0" />
-                                <a href="tel:9360620595" className="text-sm text-gray-400 hover:text-purple-400 transition-colors">
-                                    9360620595
-                                </a>
+                            {/* PHONE NUMBERS — UPDATED WITH 3 NUMBERS */}
+                            <li className="flex items-start">
+                                <PhoneIcon className="h-5 w-5 mr-3 text-purple-400 shrink-0 mt-1" />
+                                <div className="flex flex-col text-sm text-gray-400 text-left space-y-1">
+                                    <a href="tel:9360620595" className="hover:text-purple-400 transition-colors">
+                                        9360620595
+                                    </a>
+                                    <a href="tel:9442825976" className="hover:text-purple-400 transition-colors">
+                                        9442825976
+                                    </a>
+                                    <a href="tel:9360620595" className="hover:text-purple-400 transition-colors">
+                                        9360620595
+                                    </a>
+                                </div>
                             </li>
 
                         </ul>
@@ -86,7 +95,7 @@ const Footer: React.FC = () => {
                         &copy; {new Date().getFullYear()} PGS. All Rights Reserved.
                     </p>
 
-                    {/* SOCIAL ICONS (X, Instagram, LinkedIn) */}
+                    {/* SOCIAL ICONS */}
                     <div className="flex space-x-4 order-1 sm:order-2">
                         {socialLinks.map(link => {
                             const Icon = link.icon;
