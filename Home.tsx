@@ -46,30 +46,13 @@ const clientLogos = [
 ];
 
 const clientNames = [
-  "Blissfull Mind",
-  "Cell Park",
-  "Mobile Bazar",
-  "Iris Fitness",
-  "Venkateshwara Supermarket",
-  "Ashvattha Group",
-  "Bharath Gas Agency",
-  "Madurai Kadai",
-  "Arasan Traders",
-  "Nest Preschool",
-  "Kids O Kids",
-  "Kiara Interiors",
-  "Wisdom Cool Tech",
-  "Hydrox fitness",
-  "Thai Dept Store",
-  "Sivakasi Printers",
-  "D&S Jewellers",
-  "Om Muruga Sarees",
-  "H&A Menswear",
-  "Vikasa Dental",
-  "Thirupathi Jewellers",
-  "Ramalinga Tiles",
-  "SM Jewellers",
-  "Dreamz Beauty",
+  "Blissfull Mind", "Cell Park", "Mobile Bazar", "Iris Fitness",
+  "Venkateshwara Supermarket", "Ashvattha Group", "Bharath Gas Agency",
+  "Madurai Kadai", "Arasan Traders", "Nest Preschool", "Kids O Kids",
+  "Kiara Interiors", "Wisdom Cool Tech", "Hydrox fitness",
+  "Thai Dept Store", "Sivakasi Printers", "D&S Jewellers",
+  "Om Muruga Sarees", "H&A Menswear", "Vikasa Dental",
+  "Thirupathi Jewellers", "Ramalinga Tiles", "SM Jewellers", "Dreamz Beauty",
 ];
 
 const serviceImages = {
@@ -117,12 +100,16 @@ const Home: React.FC = () => {
     <AnimatedPage>
 
       {/* ---------------- HERO SECTION ---------------- */}
-      <div className="min-h-screen flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
+      <div className="min-h-[75vh] md:min-h-screen flex items-center justify-center pt-24 pb-6 md:pb-12 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
 
           <motion.div variants={staggerParent} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+
             <motion.h1 variants={staggerParent} className="font-extrabold text-white mb-6 flex flex-col items-center">
-              <motion.span variants={fadeDown} className="text-4xl md:text-7xl">OnestopSolutionsFor</motion.span>
+
+              <motion.span variants={fadeDown} className="text-3xl md:text-6xl">
+                One Stop Solutions For
+              </motion.span>
 
               <motion.span variants={zoomIn} className="text-5xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-500 my-1">
                 Business
@@ -131,16 +118,15 @@ const Home: React.FC = () => {
               <motion.span variants={fadeUp} className="text-5xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-500">
                 Development
               </motion.span>
+
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 md:mb-8">
               Our company specializes in providing innovative digital marketing solutions tailored to elevate your brand.
             </motion.p>
 
-            {/* BUTTONS */}
             <motion.div variants={staggerParent} className="flex flex-col sm:flex-row items-center justify-center gap-4">
 
-              {/* ⭐ PREMIUM RAINBOW SWEEP HOVER BUTTON */}
               <motion.div variants={zoomIn}>
                 <Link
                   to="/contact"
@@ -148,9 +134,7 @@ const Home: React.FC = () => {
                   bg-gradient-to-r from-purple-400 via-pink-500 to-red-500
                   hover:animate-[rainbow_1.5s_linear_infinite] 
                   transition-all duration-300 sm:w-auto w-full"
-                  style={{
-                    backgroundSize: "300% 300%",
-                  }}
+                  style={{ backgroundSize: "300% 300%" }}
                 >
                   <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">
                     Start Your Project
@@ -183,17 +167,27 @@ const Home: React.FC = () => {
       </div>
 
       {/* ---------------- SERVICES ---------------- */}
-      <section className="py-20">
+      <section className="pt-10 md:pt-20 pb-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">Our Core Services</h2>
 
-          <motion.div variants={staggerParent} initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {services.slice(0, 3).map((service) => (
               <motion.div key={service.id} variants={fadeUp}>
                 <Link to={`/services/${service.id}`} className="block h-full group">
                   <div className="relative h-full overflow-hidden bg-gray-900/50 p-8 rounded-lg border border-gray-800 transition-all group-hover:scale-[1.05]">
 
-                    <img src={serviceImages[service.id]} alt={service.name} className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-60" />
+                    <img
+                      src={serviceImages[service.id]}
+                      alt={service.name}
+                      className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-60"
+                    />
 
                     <div className="relative z-10 group-hover:translate-y-1 transition">
                       <div className="text-purple-400 mb-4">
@@ -271,7 +265,6 @@ const Home: React.FC = () => {
       </section>
 
       {/* ---------------- WHY CHOOSE US ---------------- */}
-      {/* ❗ Hidden on mobile ONLY */}
       <section className="hidden sm:block py-24 bg-[#0A0A10]">
         <div className="container mx-auto px-6">
 
