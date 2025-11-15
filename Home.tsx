@@ -137,31 +137,48 @@ const Home: React.FC = () => {
               Our company specializes in providing innovative digital marketing solutions tailored to elevate your brand.
             </motion.p>
 
+            {/* BUTTONS */}
             <motion.div variants={staggerParent} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+              {/* ⭐ PREMIUM RAINBOW SWEEP HOVER BUTTON (P2) */}
               <motion.div variants={zoomIn}>
                 <Link
-  to="/contact"
-  className="w-full sm:w-auto inline-block rounded-full p-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
-             hover:from-pink-500 hover:via-red-500 hover:to-yellow-400 hover:scale-110 transition duration-300"
->
-  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">
-    Start Your Project
-  </span>
-</Link>
-
+                  to="/contact"
+                  className="relative inline-block rounded-full p-[2px] 
+                  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500
+                  hover:animate-[rainbow_1.5s_linear_infinite] 
+                  transition-all duration-300 sm:w-auto w-full"
+                  style={{
+                    backgroundSize: "300% 300%",
+                  }}
+                >
+                  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">
+                    Start Your Project
+                  </span>
+                </Link>
               </motion.div>
 
+              {/* KEYFRAMES */}
+              <style>{`
+                @keyframes rainbow {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+              `}</style>
+
+              {/* Our Work (unchanged) */}
               <motion.div variants={zoomIn}>
                 <Link
-  to="/work"
-  className="w-full sm:w-auto inline-block px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 
-             rounded-full hover:bg-purple-600/20 hover:border-purple-400 hover:text-purple-300 hover:scale-110 
-             transition duration-300"
->
-  Our Work
-</Link>
-
+                  to="/work"
+                  className="w-full sm:w-auto inline-block px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 
+                  rounded-full hover:bg-purple-600/20 hover:border-purple-400 hover:text-purple-300 hover:scale-110 
+                  transition duration-300"
+                >
+                  Our Work
+                </Link>
               </motion.div>
+
             </motion.div>
           </motion.div>
         </div>
@@ -210,7 +227,6 @@ const Home: React.FC = () => {
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">We’re proud to have collaborated with these amazing businesses.</p>
           </div>
 
-          {/* 🔥 Mobile 4 columns — Desktop untouched */}
           <motion.div
             variants={staggerParent}
             initial="hidden"
@@ -238,7 +254,6 @@ const Home: React.FC = () => {
                     }
                   />
 
-                  {/* ✔️ ONLY CHANGE HERE — hide text in mobile */}
                   <motion.p
                     variants={fadeUp}
                     className="hidden sm:block mt-3 text-blue-300 text-sm font-semibold tracking-wide"
@@ -265,37 +280,43 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M3 7h13v10H3z" /><path d="M16 10l5-3v10l-5-3" /></svg>
               <h3 className="text-xl font-semibold mb-2">Video Shooting & Ads</h3>
               <p className="text-gray-400 text-sm">Professional video production and high-impact advertising content for your brand.</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M3 3h18v6H3V3zm0 12h18v6H3v-6z" /></svg>
               <h3 className="text-xl font-semibold mb-2">Creative Designs</h3>
               <p className="text-gray-400 text-sm">Modern UI/UX driven by clarity and functionality.</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 6v6l4 2" /><circle cx="12" cy="12" r="10" /></svg>
               <h3 className="text-xl font-semibold mb-2">On-Time Delivery</h3>
               <p className="text-gray-400 text-sm">Projects delivered fast without compromising quality.</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
               <h3 className="text-xl font-semibold mb-2">High Performance</h3>
               <p className="text-gray-400 text-sm">Optimized websites and apps built for speed.</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-3.5L6 21l1.5-7.5L2 9h7z" /></svg>
               <h3 className="text-xl font-semibold mb-2">Trusted Quality</h3>
               <p className="text-gray-400 text-sm">Premium service trusted by 100+ businesses.</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 transition">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-900/40 rounded-xl border border-gray-800 
+              transition hover:scale-105 hover:border-purple-500 hover:bg-gray-900/60">
               <svg className="w-14 h-14 text-purple-400 mb-4" stroke="currentColor" fill="none" strokeWidth="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>
               <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
               <p className="text-gray-400 text-sm">We’re always available when your business needs us.</p>
