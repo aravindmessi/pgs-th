@@ -13,7 +13,7 @@ import webd from "./assets/webd.webp";
 import appd from "./assets/appd.webp";
 import video from "./assets/videp.webp";
 
-import bfm from "./assets/blissfullmind.webp";
+import bfm from "./assets/Blissfullmind.webp";
 import cp from "./assets/cell_park.webp";
 import mb from "./assets/mobile_bazar.webp";
 import ifi from "./assets/iris_logo.webp";
@@ -139,15 +139,28 @@ const Home: React.FC = () => {
 
             <motion.div variants={staggerParent} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.div variants={zoomIn}>
-                <Link to="/contact" className="w-full sm:w-auto inline-block rounded-full p-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:scale-110 transition">
-                  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">Start Your Project</span>
-                </Link>
+                <Link
+  to="/contact"
+  className="w-full sm:w-auto inline-block rounded-full p-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
+             hover:from-pink-500 hover:via-red-500 hover:to-yellow-400 hover:scale-110 transition duration-300"
+>
+  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold">
+    Start Your Project
+  </span>
+</Link>
+
               </motion.div>
 
               <motion.div variants={zoomIn}>
-                <Link to="/work" className="w-full sm:w-auto inline-block px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 rounded-full hover:scale-110 transition">
-                  Our Work
-                </Link>
+                <Link
+  to="/work"
+  className="w-full sm:w-auto inline-block px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 
+             rounded-full hover:bg-purple-600/20 hover:border-purple-400 hover:text-purple-300 hover:scale-110 
+             transition duration-300"
+>
+  Our Work
+</Link>
+
               </motion.div>
             </motion.div>
           </motion.div>
@@ -225,7 +238,11 @@ const Home: React.FC = () => {
                     }
                   />
 
-                  <motion.p variants={fadeUp} className="mt-3 text-blue-300 text-sm font-semibold tracking-wide">
+                  {/* ✔️ ONLY CHANGE HERE — hide text in mobile */}
+                  <motion.p
+                    variants={fadeUp}
+                    className="hidden sm:block mt-3 text-blue-300 text-sm font-semibold tracking-wide"
+                  >
                     {clientNames[index]}
                   </motion.p>
 
