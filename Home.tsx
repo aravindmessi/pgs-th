@@ -13,7 +13,7 @@ import webd from "./assets/webd.webp";
 import appd from "./assets/appd.webp";
 import video from "./assets/videp.webp";
 
-import bfm from "./assets/Blissfullmind.webp";
+import bfm from "./assets/blissfullmind.webp";
 import cp from "./assets/cell_park.webp";
 import mb from "./assets/mobile_bazar.webp";
 import ifi from "./assets/iris_logo.webp";
