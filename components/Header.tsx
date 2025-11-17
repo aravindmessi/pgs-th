@@ -187,12 +187,12 @@ const MobileNav: React.FC = () => {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden"
                           >
-                            <div className="flex flex-col items-center mt-2 space-y-3 bg-white/5 rounded-lg p-4">
+                            <div className="flex flex-col items-center mt-2 space-y-6 bg-white/5 rounded-lg p-4">
                               {link.dropdown.map((service) => (
                                 <Link
                                   key={service.id}
                                   to={`/services/${service.id}`}
-                                  className="text-lg text-gray-400 hover:text-purple-400"
+                                  className="text-lg text-gray-400 hover:text-purple-400 py-2"
                                 >
                                   {service.name}
                                 </Link>
