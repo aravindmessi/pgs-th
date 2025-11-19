@@ -93,14 +93,13 @@ const Home: React.FC = () => {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
 
-    // Desktop & tablet keep original hide-on-scroll behaviour
+    // Desktop & tablet hide-on-scroll
     if (window.innerWidth > 768) {
       if (latest > previous && latest > 100) headingControls.start("hidden");
       else headingControls.start("visible");
     }
   });
 
-  // ⬇ FIX: Force header always visible on mobile
   useEffect(() => {
     if (window.innerWidth <= 768) {
       const header = document.querySelector("header");
@@ -116,7 +115,7 @@ const Home: React.FC = () => {
   return (
     <AnimatedPage>
 
-      {/* ---------------- HERO SECTION ---------------- */}
+      {/* ---------------- HERO ---------------- */}
       <div className="min-h-[75vh] md:min-h-screen flex items-center justify-center pt-24 pb-6 md:pb-12 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
 
@@ -153,7 +152,7 @@ const Home: React.FC = () => {
                   transition-all duration-300 sm:w-auto w-full"
                   style={{ backgroundSize: "300% 300%" }}
                 >
-                  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold transition-colors duration-300 group-hover:bg-gradient-to-r from-violet-600 to-indigo-700">
+                  <span className="block bg-[#0A0A10] text-white rounded-full px-8 py-4 text-lg font-semibold transition-colors duration-300">
                     Start Your Project
                   </span>
                 </Link>
@@ -227,7 +226,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ---------------- CLIENTS SECTION ---------------- */}
+      {/* ---------------- CLIENTS ---------------- */}
       <section className="py-20">
         <div className="container mx-auto px-6">
 

@@ -49,11 +49,12 @@ const Footer: React.FC = () => {
 
                             <li className="flex items-start">
                                 <LocationIcon className="h-5 w-5 mr-3 mt-1 text-purple-400 shrink-0" />
+
                                 <address className="not-italic text-sm text-gray-400 text-left">
                                     <span className="font-semibold text-white">Head Office:</span><br />
                                     F3,1/113, Jmj Complex, TNAU Nagar, Othakadai Madurai - 625107, Tamil Nadu.<br /><br />
 
-                                    <span className="font-semibold text-white">Branch Office::</span><br />
+                                    <span className="font-semibold text-white">Branch Office:</span><br />
                                     21-A SM St, Opp BSNL Office, Sivakasi, Tamil Nadu – 626123<br /><br />
 
                                     <span className="font-semibold text-white">Studio:</span><br />
