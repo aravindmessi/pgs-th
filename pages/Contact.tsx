@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5000/api/contact", {
+            const res = await axios.post("http://10.249.255.221:5000/api/contact", {
                 name: form.name,
                 email: form.email,
                 subject: form.service,
