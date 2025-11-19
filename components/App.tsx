@@ -13,6 +13,9 @@ import Contact from '../pages/Contact';
 import OurWork from '../pages/OurWork';
 import ProjectDetail from '../pages/ProjectDetail';
 import DiscussProject from '../pages/DiscussProject';
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsConditions from "../pages/TermsConditions";
+
 
 const SharedBackground: React.FC = () => {
     const { scrollYProgress } = useScroll();
@@ -68,6 +71,9 @@ const AppContent: React.FC = () => {
             <Route path="/work" element={<OurWork />} />
             <Route path="/work/:category/:projectId" element={<ProjectDetail />} />
             <Route path="/discuss-project" element={<DiscussProject />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
+
           </Routes>
         </AnimatePresence>
       </main>

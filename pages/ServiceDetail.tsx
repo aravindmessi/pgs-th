@@ -85,11 +85,17 @@ const ServiceDetail: React.FC = () => {
                                 <li className="flex items-center"><span className="text-purple-500 mr-2">&#10003;</span> Clean & Modern Execution</li>
                             </ul>
 
-                            <Link 
-                                to="/contact" 
-                                className="block w-full mt-8 px-6 py-3 text-center font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full shadow-lg hover:scale-105 transition-transform"
+                            <Link
+                                to="/contact"
+                                className="block w-full mt-8 relative rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-red-500 to-purple-600 transition-all duration-300 group"
+                                style={{
+                                    backgroundSize: '300% 300%',
+                                    animation: 'animated-gradient-border-flow 3s linear infinite',
+                                }}
                             >
-                                Start Your Project
+                                <span className="block text-center bg-[#0A0A10] text-white rounded-full px-6 py-3 font-semibold transition-colors duration-300 group-hover:bg-gradient-to-r from-violet-600 to-indigo-700">
+                                    Start Your Project
+                                </span>
                             </Link>
                         </div>
 
