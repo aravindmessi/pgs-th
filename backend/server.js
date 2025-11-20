@@ -1,93 +1,81 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// Debug
-console.log("LOADED ENV:", process.env.MONGODB_URL);
-
-// ----------------------
-// DB CONNECT (NO .then USED)
-// ----------------------
-async function connectDB() {
-  try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("MongoDB Connected Successfully");
-  } catch (error) {
-    console.error("MongoDB Connection Error:", error);
-  }
-}
-
-connectDB();
-
-
-// ----------------------
-// CONTACT MODEL
-// ----------------------
-const contactSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: String,
-  subject: String,
-  message: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+// Nodemailer Transporter
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
-
-
-// ----------------------
-// POST ENDPOINT
-// ----------------------
+// CONTACT FORM ROUTE
 app.post("/api/contact", async (req, res) => {
-  const { name, email, phone, subject, message } = req.body;
+    const { name, email, subject, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({
-      success: false,
-      error: "Name, Email, and Message are required."
-    });
-  }
+    try {
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: "aravindappu935@gmail.com",
+            subject: `New Contact Form Submission - ${subject}`,
+            text: `
+Name: ${name}
+Email: ${email}
 
-  try {
-    const newContact = new Contact({
-      name,
-      email,
-      phone,
-      subject,
-      message
-    });
+Message:
+${message}
+            `
+        });
 
-    await newContact.save();
-    console.log(`Saved to DB: ${email}`);
-
-    res.status(200).json({
-      success: true,
-      message: "Form submitted successfully"
-    });
-  } catch (error) {
-    console.error("Error saving form:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to submit form"
-    });
-  }
+        res.status(200).json({ success: true, message: "Email sent successfully" });
+        console.log("Contact email sent!");
+    } catch (err) {
+        console.error("Email sending error:", err);
+        res.status(500).json({ success: false, message: "Failed to send email" });
+    }
 });
 
+// DISCUSS PROJECT ROUTE
+app.post("/api/discuss", async (req, res) => {
+    const { name, email, phone, projectType, message, company, budget } = req.body;
 
-// ----------------------
-// START SERVER
-// ----------------------
+    try {
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: "aravindappu935@gmail.com",
+            subject: `New Project Discussion - ${projectType}`,
+            text: `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Company: ${company}
+Budget: ${budget}
+
+Message:
+${message}
+            `
+        });
+
+        res.status(200).json({ success: true, message: "Email sent successfully" });
+        console.log("Discuss project email sent!");
+    } catch (err) {
+        console.error("Email sending error:", err);
+        res.status(500).json({ success: false, message: "Failed to send email" });
+    }
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
+    console.log("Nodemailer is ready to send emails");
 });

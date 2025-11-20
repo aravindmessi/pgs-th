@@ -3,6 +3,7 @@ import AnimatedPage from '../components/AnimatedPage';
 import { motion, Variants } from 'framer-motion';
 import axios from "axios";
 import { services } from '../constants';
+import { API_BASE_URL } from "../utils/api.js";
 
 const DiscussProject: React.FC = () => {
 
@@ -38,11 +39,13 @@ const DiscussProject: React.FC = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5000/api/contact", {
+            const res = await axios.post(`${API_BASE_URL}/api/discuss`, {
                 name: form.name,
                 email: form.email,
                 phone: form.phone,
-                subject: form.service,
+                company: form.company,
+                projectType: form.service,
+                budget: form.budget,
                 message: form.details
             });
 

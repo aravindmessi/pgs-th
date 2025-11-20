@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import axios from "axios";
 import { services } from '../constants';
 import { MailIcon, PhoneIcon, LocationIcon } from '../components/Icons';
+import { API_BASE_URL } from "../utils/api.js";
 
 const Contact: React.FC = () => {
 
@@ -36,7 +37,7 @@ const Contact: React.FC = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://10.249.255.221:5000/api/contact", {
+            const res = await axios.post(`${API_BASE_URL}/api/contact`, {
                 name: form.name,
                 email: form.email,
                 subject: form.service,
@@ -75,6 +76,7 @@ const Contact: React.FC = () => {
                         initial="hidden"
                         animate="visible"
                     >
+
                         {/* LEFT FORM */}
                         <motion.form
                             initial={{ opacity: 0, x: -30 }}
