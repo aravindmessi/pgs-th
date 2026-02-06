@@ -13,15 +13,15 @@ const PORT = process.env.PORT || 5000;
 ======================= */
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://your-project.vercel.app" // change later
-    ],
-    methods: ["POST"],
-  })
-);
+// SIMPLE CORS (safe for now, works on Render + Vercel)
+app.use(cors());
+
+/* =======================
+   HEALTH CHECK (IMPORTANT)
+======================= */
+app.get("/", (req, res) => {
+  res.status(200).send("Backend is running 🚀");
+});
 
 /* =======================
    NODEMAILER SETUP
@@ -34,6 +34,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Verify mail connection
 transporter.verify((error) => {
   if (error) {
     console.error("Nodemailer error:", error);
